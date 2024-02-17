@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UIElements;
+using System;
+using UnityEngine.Events;
 
 public class ScoreClass : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreDisplay;
+
+    [Serializable]
+    public class Every10ScorePoints : UnityEvent { }
+    public Every10ScorePoints onEvery10PointsRecieved;
+
 
 
     private int score;
@@ -20,6 +27,12 @@ public class ScoreClass : MonoBehaviour
         set 
         {
             score = value;
+
+            if(score % 10 == 0)
+            {
+                onEvery10PointsRecieved.Invoke();
+            }
+
             UpdateDisplayScore();
         }  
 
@@ -41,7 +54,6 @@ public class ScoreClass : MonoBehaviour
 
     }
 
-
     public void IncreaseScore(int inputScore)
     {
         Score += inputScore;
@@ -51,8 +63,6 @@ public class ScoreClass : MonoBehaviour
     {
         scoreDisplay.text = "Score: " + Score;
     }
-
-
 
 
 }

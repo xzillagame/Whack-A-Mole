@@ -23,6 +23,11 @@ public class MoleSpawnerScript : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        SpawnMole();
+    }
+
 
     public void SpawnMole()
     {

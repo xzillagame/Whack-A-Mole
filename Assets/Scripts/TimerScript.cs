@@ -1,6 +1,7 @@
 using System;
 using UnityEngine.Events;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 public class TimeIntervalComponentScript : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class TimeIntervalComponentScript : MonoBehaviour
     [Tooltip("Counted in Seconds")]
     private float timePerInterval = 1f;
 
+    [SerializeField] private float minimumTimeIntervalValue = 0.5f;
+
+
     private float elapsed_Time = 0;
+    private const float timePerIntervalConst = 1f;
+    
 
 
     [Serializable]
@@ -34,5 +40,28 @@ public class TimeIntervalComponentScript : MonoBehaviour
             }
         }
     }
+
+
+    public void SetTimeInterval(float newTimeInterval)
+    {
+        timePerInterval = newTimeInterval;
+    }
+
+    public void RestTimerToDefaultInterval()
+    {
+        timePerInterval = timePerIntervalConst;
+    }
+
+
+    public void DecreaseTimerInterval(float rateToDecreaseTimeInterval)
+    {
+        timePerInterval -= rateToDecreaseTimeInterval;
+
+        if(timePerInterval <= minimumTimeIntervalValue)
+        {
+            timePerInterval = minimumTimeIntervalValue;
+        }
+    }
+
 
 }

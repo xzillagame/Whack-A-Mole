@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd0ba813f212a34fb1c9e2339c6696e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerInterval: 5
-  timerPaused: 0
+  timePerInterval: 6
+  minimumTimeIntervalValue: 1.5
   onTimerComplete:
     m_PersistentCalls:
       m_Calls:
