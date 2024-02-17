@@ -7,20 +7,9 @@ public class MoleSpawnerScript : MonoBehaviour
     [SerializeField] private MoleScript molePrefab;
     [SerializeField] private RectTransform playArea;
 
-    private float randomX;
-    private float randomY;
+    private float randomXPos;
+    private float randomYPos;
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            SpawnMole();
-        }
-
-    }
 
 
     private void Start()
@@ -29,14 +18,16 @@ public class MoleSpawnerScript : MonoBehaviour
     }
 
 
+
+    //SpawnMole called from Score Manager OnEvery10Point Event
     public void SpawnMole()
     {
-        randomX = Random.Range(1, playArea.rect.width);
-        randomY = Random.Range(1, playArea.rect.height);
+        randomXPos = Random.Range(1, playArea.rect.width);
+        randomYPos = Random.Range(1, playArea.rect.height);
 
         
         MoleScript tmpMole = Instantiate(molePrefab,transform);
-        tmpMole.transform.position = new Vector3(randomX, randomY, 0);
+        tmpMole.transform.position = new Vector3(randomXPos, randomYPos, 0);
 
     }
 

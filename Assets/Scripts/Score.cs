@@ -10,6 +10,7 @@ public class ScoreClass : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreDisplay;
 
+    //Event after every 10 Points is recieved
     [Serializable]
     public class Every10ScorePoints : UnityEvent { }
     public Every10ScorePoints onEvery10PointsRecieved;
@@ -17,7 +18,7 @@ public class ScoreClass : MonoBehaviour
 
 
     private int score;
-    public int Score
+    private int Score
     {
         get
         {
@@ -28,6 +29,7 @@ public class ScoreClass : MonoBehaviour
         {
             score = value;
 
+            //Check if Score reaches every 10 points. If so invoke onEvery10PointsRecieved event
             if(score % 10 == 0)
             {
                 onEvery10PointsRecieved.Invoke();
@@ -45,20 +47,14 @@ public class ScoreClass : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            IncreaseScore(1);
-        }
-
-    }
-
+    //Called from Button event OnClick
     public void IncreaseScore(int inputScore)
     {
         Score += inputScore;
     }
 
+    
+    //Update text field with the current score
     private void UpdateDisplayScore()
     {
         scoreDisplay.text = "Score: " + Score;

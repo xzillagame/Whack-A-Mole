@@ -5,27 +5,27 @@ using System.Runtime.CompilerServices;
 
 public class TimeIntervalComponentScript : MonoBehaviour
 {
+  #region Time Interval Varaibles
+        [SerializeField]
+        [Range(0.1f, 20)]
+        [Tooltip("Counted in Seconds")]
+        private float timePerInterval = 1f;
 
-    [SerializeField]
-    [Range(0.1f, 20)]
-    [Tooltip("Counted in Seconds")]
-    private float timePerInterval = 1f;
+        [SerializeField] private float minimumTimeIntervalValue = 0.5f;
 
-    [SerializeField] private float minimumTimeIntervalValue = 0.5f;
-
+        private const float timePerIntervalConst = 1f;
+  #endregion
 
     private float elapsed_Time = 0;
-    private const float timePerIntervalConst = 1f;
     
 
-
+    //Event for when elasped time has been reached.
     [Serializable]
     public class TimerIntervalCompleted : UnityEvent { }
     public TimerIntervalCompleted onTimerComplete;
 
 
-    
-    // Update is called once per frame
+   
     void Update()
     {
         elapsed_Time += Time.deltaTime;
@@ -42,17 +42,7 @@ public class TimeIntervalComponentScript : MonoBehaviour
     }
 
 
-    public void SetTimeInterval(float newTimeInterval)
-    {
-        timePerInterval = newTimeInterval;
-    }
-
-    public void RestTimerToDefaultInterval()
-    {
-        timePerInterval = timePerIntervalConst;
-    }
-
-
+    //SetTimeInterval called from Score Manager OnEvery10Point Event
     public void DecreaseTimerInterval(float rateToDecreaseTimeInterval)
     {
         timePerInterval -= rateToDecreaseTimeInterval;

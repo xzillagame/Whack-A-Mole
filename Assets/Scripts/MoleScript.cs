@@ -16,12 +16,13 @@ public class MoleScript : MonoBehaviour
     }
 
 
+    //UpdateScore called on Button Click Event
     public void UpdateScore()
     {
-        scoreClassReference.Score += scoreAmount;
+        scoreClassReference.IncreaseScore(scoreAmount);
     }
 
-
+    //DestorySelf called on either Button Click Event or when OnTimerComplete event from Timer Interval componenet
     public void DestorySelf()
     {
         Destroy(this.gameObject);
