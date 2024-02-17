@@ -24,7 +24,7 @@ public class MoleSpawnerScript : MonoBehaviour
 
 
 
-    void SpawnMole()
+    public void SpawnMole()
     {
         randomX = Random.Range(1, playArea.rect.width);
         randomY = Random.Range(1, playArea.rect.height);
@@ -33,7 +33,6 @@ public class MoleSpawnerScript : MonoBehaviour
         MoleScript tmpMole = Instantiate(molePrefab,transform);
         tmpMole.transform.position = new Vector3(randomX, randomY, 0);
 
-        
     }
 
 }
